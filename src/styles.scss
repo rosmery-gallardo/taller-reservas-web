@@ -1,0 +1,84 @@
+@use 'styles/variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: $paper;
+  color: $black;
+  font-family: $font;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.container {
+  width: min(1100px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+// Etiquetas y bandas de color por disciplina (compartidas por varias páginas)
+@each $name, $color in $colors {
+  $text: $white;
+
+  @if $name == 'yellow' {
+    $text: $black;
+  }
+
+  .bg-#{$name} {
+    background: $color;
+  }
+
+  .tag--#{$name} {
+    background: $color;
+    color: $text;
+  }
+}
+
+.tag {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.alert {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: $border;
+  font-weight: 600;
+
+  &--success {
+    background: $yellow;
+  }
+
+  &--error {
+    background: $red;
+    color: $white;
+  }
+}
+
+.empty {
+  padding: 3rem;
+  border: $border;
+  background: $white;
+  text-align: center;
+}
