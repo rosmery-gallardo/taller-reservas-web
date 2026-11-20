@@ -1,0 +1,60 @@
+@use '../styles/variables' as *;
+
+.site-header {
+  border-bottom: $border;
+  background: $white;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+// Las tres formas básicas de la Bauhaus: círculo, cuadrado y triángulo
+.shapes {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+
+  span {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .circle {
+    border-radius: 50%;
+    background: $blue;
+  }
+
+  .square {
+    background: $red;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-right: 0.7rem solid transparent;
+    border-bottom: 1.25rem solid $yellow;
+    border-left: 0.7rem solid transparent;
+  }
+}
+
+.site-footer {
+  margin-top: 4rem;
+  padding-block: 2rem;
+  border-top: $border;
+  font-size: 0.9rem;
+}
