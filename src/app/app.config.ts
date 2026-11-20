@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
+import { isDemoMode } from './core/api.config';
+import { DemoWorkshopService } from './core/demo-workshop.service';
+import { WorkshopService } from './core/workshop.service';
 
 registerLocaleData(localeEs);
 
@@ -19,5 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     { provide: LOCALE_ID, useValue: 'es' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    // En GitHub Pages los componentes reciben el servicio de demo sin saberlo.
+    ...(isDemoMode() ? [{ provide: WorkshopService, useClass: DemoWorkshopService }] : []),
   ],
 };

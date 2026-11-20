@@ -58,3 +58,13 @@
   border-top: $border;
   font-size: 0.9rem;
 }
+
+.demo-banner {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-bottom: $border;
+  background: $yellow;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
