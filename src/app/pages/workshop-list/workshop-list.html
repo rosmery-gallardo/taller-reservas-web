@@ -1,0 +1,49 @@
+<section class="hero">
+  <div class="hero__text">
+    <h1>La forma sigue a la función</h1>
+    <p>Talleres prácticos de diseño, tipografía, cerámica, fotografía y arquitectura. Plazas limitadas.</p>
+  </div>
+  <div class="hero__art" aria-hidden="true"></div>
+</section>
+
+<div class="container">
+  <nav class="filters" aria-label="Filtrar por disciplina">
+    <button type="button" class="chip" [class.is-active]="!discipline()" (click)="select(null)">Todos</button>
+    @for (d of disciplines; track d.value) {
+      <button type="button" class="chip" [class.is-active]="discipline() === d.value" (click)="select(d.value)">
+        {{ d.label }}
+      </button>
+    }
+  </nav>
+
+  @switch (state().status) {
+    @case ('loading') {
+      <p class="empty">Cargando talleres…</p>
+    }
+    @case ('error') {
+      <p class="empty">No se ha podido conectar con la API. ¿Está arrancado el proyecto Laravel?</p>
+    }
+    @default {
+      @if (workshops().length === 0) {
+        <p class="empty">No hay talleres programados para esta disciplina.</p>
+      } @else {
+        <div class="grid">
+          @for (w of workshops(); track w.id) {
+            <a class="card" [routerLink]="['/talleres', w.slug]">
+              <div class="card__band" [class]="'bg-' + w.discipline.color"></div>
+              <div class="card__body">
+                <span [class]="'tag tag--' + w.discipline.color">{{ w.discipline.label }}</span>
+                <h2>{{ w.title }}</h2>
+                <p>{{ w.starts_at | date: 'dd/MM/yyyy · HH:mm' }} · {{ w.instructor }}</p>
+              </div>
+              <div class="card__meta">
+                <span>{{ w.price_cents / 100 | currency: 'EUR' }}</span>
+                <span>{{ w.seats_left > 0 ? w.seats_left + ' plazas' : 'Completo' }}</span>
+              </div>
+            </a>
+          }
+        </div>
+      }
+    }
+  }
+</div>
