@@ -1,0 +1,18 @@
+// Paleta Bauhaus: tres primarios, negro y un blanco roto
+$red: #d7282f;
+$blue: #1f4e9c;
+$yellow: #f2b90f;
+$black: #111111;
+$paper: #f4efe6;
+$white: #ffffff;
+
+$font: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
+$border: 3px solid $black;
+$gap: 1.5rem;
+
+$colors: (
+  'red': $red,
+  'blue': $blue,
+  'yellow': $yellow,
+  'black': $black,
+);
